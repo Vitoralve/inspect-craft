@@ -2,39 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Form Builder Design System - Modern Tech Palette */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    /* Base colors */
+    --background: 240 10% 98%;
+    --foreground: 240 10% 9%;
+    
+    /* Cards and surfaces */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 240 10% 9%;
+    
+    /* Primary brand - Tech blue */
+    --primary: 234 89% 74%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 234 89% 68%;
+    --primary-light: 234 89% 85%;
+    
+    /* Secondary - Professional purple */
+    --secondary: 270 91% 65%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-hover: 270 91% 60%;
+    
+    /* Success - Fresh green */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 142 76% 85%;
+    
+    /* Accent - Warm orange */
+    --accent: 25 95% 53%;
+    --accent-foreground: 0 0% 100%;
+    --accent-light: 25 95% 85%;
+    
+    /* Neutral tones */
+    --muted: 240 6% 96%;
+    --muted-foreground: 240 4% 46%;
+    --muted-dark: 240 6% 90%;
+    
+    /* Interactive states */
+    --hover: 240 6% 93%;
+    --active: 240 6% 88%;
+    
+    /* Borders and inputs */
+    --border: 240 6% 90%;
+    --input: 240 6% 93%;
+    --ring: 234 89% 74%;
+    
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Popover */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --popover-foreground: 240 10% 9%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(234 89% 74%), hsl(270 91% 65%));
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 50%));
+    --gradient-hero: linear-gradient(135deg, hsl(234 89% 74%) 0%, hsl(270 91% 65%) 50%, hsl(25 95% 53%) 100%);
+    --gradient-surface: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(240 6% 98%) 100%);
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(240 4% 46% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(240 4% 46% / 0.1), 0 2px 4px -1px hsl(240 4% 46% / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(240 4% 46% / 0.1), 0 4px 6px -2px hsl(240 4% 46% / 0.05);
+    --shadow-xl: 0 20px 25px -5px hsl(240 4% 46% / 0.1), 0 10px 10px -5px hsl(240 4% 46% / 0.04);
+    --shadow-glow: 0 0 0 1px hsl(234 89% 74% / 0.05), 0 8px 32px hsl(234 89% 74% / 0.12);
+    
+    /* Phone simulator */
+    --phone-bg: 240 5% 8%;
+    --phone-screen: 0 0% 100%;
+    --phone-bezel: 240 5% 15%;
+    
+    /* Form builder specific */
+    --builder-sidebar: 240 6% 97%;
+    --builder-main: 0 0% 100%;
+    --field-palette: 240 6% 99%;
+    --drag-target: 234 89% 95%;
+    --drag-active: 234 89% 85%;
 
     --radius: 0.5rem;
 
@@ -100,6 +146,45 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+
+  /* Utilities for form builder */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Custom scrollbars */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+
+  /* Drag and drop animations */
+  .drag-preview {
+    transform: rotate(5deg) scale(1.05);
+    opacity: 0.8;
+  }
+
+  /* Phone simulator specific styles */
+  .phone-content {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground) / 0.3) transparent;
   }
 }
